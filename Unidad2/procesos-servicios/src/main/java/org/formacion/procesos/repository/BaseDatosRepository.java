@@ -1,10 +1,10 @@
 package org.formacion.procesos.repository;
 
-import org.formacion.procesos.repository.interfaces.IFicheroRepository;
+import org.formacion.procesos.repository.interfaces.IAlamcenamientoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository("baseDatosRepository")
-public class BaseDatosRepository implements IFicheroRepository{
+public class BaseDatosRepository implements IAlamcenamientoRepository{
 
     @Override
     public String saludar() {
