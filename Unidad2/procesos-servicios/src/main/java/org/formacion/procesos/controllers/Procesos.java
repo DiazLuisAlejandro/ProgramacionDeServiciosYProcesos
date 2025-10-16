@@ -1,7 +1,7 @@
-package org.formacion.procesos.service;
+package org.formacion.procesos.controllers;
 
 import org.formacion.procesos.component.interfaces.IFicheroComponent;
-import org.formacion.procesos.service.interfaces.IProcesos;
+import org.formacion.procesos.controllers.interfaces.IProcesos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
