@@ -9,25 +9,9 @@ public class ComandoServiceLS extends ComandoServiceAbstract {
 
     public ComandoServiceLS(){
         this.setTipo(ProcessType.LS);
+        this.setRegExp("^((-(la|l|a))|\s*)$");
         
     }
 
-    @Override
-    public void imprimirMensaje() {
-        System.out.println("Estoy llamandoa a ComandoControllerLS");
-    }
-
-    @Override
-    public boolean validar(String[] arrayComando) {
-
-        if (!super.validarComando()) {
-            return false;
-
-        }
-        String parametro=arrayComando[1];
-        return true;
-    }
-
-   
 
 }

@@ -1,15 +1,18 @@
 package org.formacion.procesos.services.abstractas;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.formacion.procesos.domain.ProcessType;
 import org.formacion.procesos.repositories.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class ComandoServiceAbstract {
-    String comando;
-    List<String> parametros;
-    ProcessType tipo;
+    private String comando;
+    private List<String> parametros;
+    private ProcessType tipo;
+    private String regExp;
 
     @Autowired
     FileRepository fileRepository;
@@ -28,6 +31,14 @@ public abstract class ComandoServiceAbstract {
 
     public void setParametros(List<String> parametros) {
         this.parametros = parametros;
+    }
+
+    public String getRegExp() {
+        return regExp;
+    }
+
+    public void setRegExp(String regExp) {
+        this.regExp = regExp;
     }
 
     public void procesarLinea(String linea) {
@@ -50,7 +61,6 @@ public abstract class ComandoServiceAbstract {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        imprimirMensaje();
 
     }
 
@@ -72,9 +82,27 @@ public abstract class ComandoServiceAbstract {
         this.tipo = tipo;
     }
 
-    public abstract void imprimirMensaje();
 
-    public abstract boolean validar(String[]arrayComando);
+    public boolean validar(String[] arrayComando) {
+
+        if (!validarComando()) {
+            return false;
+
+        }
+        String parametro = arrayComando[1];
+
+        Pattern pattern = Pattern.compile(regExp);
+
+        Matcher matcher = pattern.matcher(parametro);
+
+        if (!matcher.find()) {
+            System.out.println("No cumple");
+            return false;
+        }
+
+        return true;
+    }
+
 
     public boolean validarComando(){
         if (!this.getComando().toUpperCase().equals(getTipo().toString())) {
