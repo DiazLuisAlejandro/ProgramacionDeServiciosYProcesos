@@ -6,16 +6,18 @@ import java.util.regex.Pattern;
 
 import org.formacion.procesos.domain.ProcessType;
 import org.formacion.procesos.repositories.FileRepository;
+import org.formacion.procesos.repositories.interfaces.CRUDInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class ComandoServiceAbstract {
+
+    CRUDInterface fileRepository;
+
+
     private String comando;
     private List<String> parametros;
     private ProcessType tipo;
     private String regExp;
-
-    @Autowired
-    FileRepository fileRepository;
 
     public String getComando() {
         return comando;
@@ -111,5 +113,14 @@ public abstract class ComandoServiceAbstract {
 
         }
         return true;
-     };
+     }
+
+    public CRUDInterface getFileRepository() {
+        return fileRepository;
+    }
+
+    @Autowired
+    public void setFileRepository(CRUDInterface fileRepository) {
+        this.fileRepository = fileRepository;
+    };
 }
