@@ -12,6 +12,7 @@ class FileRepositoryTest {
     @BeforeEach
     void beforeEach(){
         fileRepository=new FileRepository();
+        fileRepository.setFileName("fichero-test.txt");
     }
 
     @Test
