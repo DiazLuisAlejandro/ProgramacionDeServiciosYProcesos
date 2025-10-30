@@ -2,7 +2,7 @@ package org.formacion.procesos.controllers;
 
 import java.util.Scanner;
 
-import org.formacion.procesos.services.ComandoServiceLS;
+import org.formacion.procesos.services.ComandoServiceLSOF;
 import org.formacion.procesos.services.ComandoServicePS;
 import org.formacion.procesos.services.ComandoServiceTop;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class RunnerController {
     @Autowired
     ComandoServicePS comandoControllerPs;
     @Autowired
-    ComandoServiceLS comandoControllerLs;
+    ComandoServiceLSOF comandoControllerLs;
     @Autowired
     ComandoServiceTop comandoControllerTop;
 
@@ -30,7 +30,7 @@ public class RunnerController {
 
         if (linea.toUpperCase().startsWith("PS")) {
             comandoControllerPs.procesarLinea(linea);            
-        }else if(linea.toUpperCase().startsWith("LS")){
+        }else if(linea.toUpperCase().startsWith("LSOF")){
             comandoControllerLs.procesarLinea(linea);
         }else if (linea.toUpperCase().startsWith("TOP")) {
             comandoControllerTop.procesarLinea(linea);

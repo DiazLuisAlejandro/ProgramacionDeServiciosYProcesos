@@ -13,7 +13,6 @@ public abstract class ComandoServiceAbstract {
 
     CRUDInterface fileRepository;
 
-
     private String comando;
     private List<String> parametros;
     private ProcessType tipo;
@@ -55,29 +54,37 @@ public abstract class ComandoServiceAbstract {
 
         // "linea= ps aux |grep java"
 
-           if (this.comando == "top") {
+        if (this.comando == "top") {
             Process proceso;
             try {
-                proceso = new ProcessBuilder(linea+" -b -n 1 >> src/main/resources/mis_procesos.txt")
+                proceso = new ProcessBuilder(linea + " -bn 1 >> src\\main\\resources\\mis_procesos.txt")
                         .start();
                 proceso.waitFor();
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
+        }else if (this.comando=="ps") {
+            Process proceso;
+            try {
+                proceso = new ProcessBuilder("sh", "-c", linea + ">> src\\main\\resources\\mis_procesos.txt")
+                        .start();
+                proceso.waitFor();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }else if (this.comando=="lsof") {
+            Process proceso;
+            try {
+                proceso = new ProcessBuilder("sh", "-c", linea + ">> src\\main\\resources\\mis_procesos.txt")
+                        .start();
+                proceso.waitFor();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-        /*
-        Process proceso;
-        try {
-            proceso = new ProcessBuilder("sh", "-c", linea + ">> src/main/resources/mis_procesos.txt")
-                    .start();
-            proceso.waitFor();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        */
 
     }
 
@@ -99,7 +106,6 @@ public abstract class ComandoServiceAbstract {
         this.tipo = tipo;
     }
 
-
     public boolean validar(String[] arrayComando) {
 
         if (!validarComando()) {
@@ -107,7 +113,7 @@ public abstract class ComandoServiceAbstract {
 
         }
 
-        if (arrayComando.length<2) {
+        if (arrayComando.length < 2) {
             return true;
 
         }
@@ -126,15 +132,14 @@ public abstract class ComandoServiceAbstract {
         return true;
     }
 
-
-    public boolean validarComando(){
+    public boolean validarComando() {
         if (!this.getComando().toUpperCase().equals(getTipo().toString())) {
             System.out.println("El comando es invalido");
             return false;
 
         }
         return true;
-     }
+    }
 
     public CRUDInterface getFileRepository() {
         return fileRepository;

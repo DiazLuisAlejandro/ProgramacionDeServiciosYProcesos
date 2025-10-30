@@ -10,7 +10,7 @@ public class ComandoServicePS extends ComandoServiceAbstract {
 
     public ComandoServicePS() {
         this.setTipo(ProcessType.PS);
-        this.setRegExp("^((-?(aux|xa|a|x))|\s*)$");
+        this.setRegExp("^aux$");
 
     }
 

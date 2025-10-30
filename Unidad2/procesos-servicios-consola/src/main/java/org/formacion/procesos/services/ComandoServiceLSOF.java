@@ -5,11 +5,11 @@ import org.formacion.procesos.services.abstractas.ComandoServiceAbstract;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ComandoServiceLS extends ComandoServiceAbstract {
+public class ComandoServiceLSOF extends ComandoServiceAbstract {
 
-    public ComandoServiceLS(){
+    public void ComandoServiceLSOf() {
         this.setTipo(ProcessType.LSOF);
-        this.setRegExp("^((-(la|l|a))|\s*)$");
+        this.setRegExp("^-i$");
         
     }
 
