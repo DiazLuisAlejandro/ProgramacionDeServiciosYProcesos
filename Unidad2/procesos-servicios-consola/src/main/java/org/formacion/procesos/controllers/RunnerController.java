@@ -2,7 +2,9 @@ package org.formacion.procesos.controllers;
 
 import java.util.Scanner;
 
+import org.formacion.procesos.services.ComandoServiceLS;
 import org.formacion.procesos.services.ComandoServicePS;
+import org.formacion.procesos.services.ComandoServiceTop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,22 +12,28 @@ import org.springframework.stereotype.Service;
 public class RunnerController {
 
     @Autowired
-    ComandoServicePS comandoController;
+    ComandoServicePS comandoControllerPs;
+    @Autowired
+    ComandoServiceLS comandoControllerLs;
+    @Autowired
+    ComandoServiceTop comandoControllerTop;
 
 
     public void menuConsola() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("=== Lanzador de Procesos (CLI) Linux/Windows ===\n" +
-                "Comandos:\n" +
-                "  run PING host=8.8.8.8 count=4 timeoutMs=15000\n" +
-                "  run LIST_DIR path=.\n" +
-                "  run HASH_SHA256 file=README.md\n" +
-                "  help | os | exit\n");
+        System.out.println("=== Lanzador de Procesos (CLI) Linux ===\n"+
+            "   Comandos:\n"+
+            "       lsof -i\n"+
+            "       top\n"+
+            "       ps aux | head\n");
           String linea = scanner.nextLine();
-          comandoController.procesarLinea(linea);
 
         if (linea.toUpperCase().startsWith("PS")) {
-            comandoController.procesarLinea(linea);            
+            comandoControllerPs.procesarLinea(linea);            
+        }else if(linea.toUpperCase().startsWith("LS")){
+            comandoControllerLs.procesarLinea(linea);
+        }else if (linea.toUpperCase().startsWith("TOP")) {
+            comandoControllerTop.procesarLinea(linea);
         }
     }
 

@@ -23,10 +23,11 @@ public class FileRepository implements CRUDInterface{
     }
 
     public FileRepository(){
-        fileName="mis_procesos.txt";
-        URL resource=getClass().getClassLoader().getResource(fileName);
-        path=Paths.get(resource.getPath());
-
+        if(fileName==null){
+            fileName="mis_procesos.txt";
+        }
+        //URL resource=getClass().getClassLoader().getResource(fileName);
+        path=Paths.get("src/main/resources/mis_procesos.txt");
     }
 
     @Override

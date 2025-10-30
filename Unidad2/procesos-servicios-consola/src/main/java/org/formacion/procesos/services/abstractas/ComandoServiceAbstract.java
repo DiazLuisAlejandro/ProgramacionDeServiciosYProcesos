@@ -54,15 +54,30 @@ public abstract class ComandoServiceAbstract {
         }
 
         // "linea= ps aux |grep java"
+
+           if (this.comando == "top") {
+            Process proceso;
+            try {
+                proceso = new ProcessBuilder(linea+" -b -n 1 >> src/main/resources/mis_procesos.txt")
+                        .start();
+                proceso.waitFor();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+        /*
         Process proceso;
         try {
-            proceso = new ProcessBuilder("sh", "-c", linea + "> mis_procesos.txt")
+            proceso = new ProcessBuilder("sh", "-c", linea + ">> src/main/resources/mis_procesos.txt")
                     .start();
             proceso.waitFor();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        */
 
     }
 
@@ -91,6 +106,12 @@ public abstract class ComandoServiceAbstract {
             return false;
 
         }
+
+        if (arrayComando.length<2) {
+            return true;
+
+        }
+
         String parametro = arrayComando[1];
 
         Pattern pattern = Pattern.compile(regExp);
