@@ -57,27 +57,7 @@ public abstract class ComandoServiceAbstract {
         if (this.comando == "top") {
             Process proceso;
             try {
-                proceso = new ProcessBuilder(linea + " -bn 1 >> src\\main\\resources\\mis_procesos.txt")
-                        .start();
-                proceso.waitFor();
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }else if (this.comando=="ps") {
-            Process proceso;
-            try {
-                proceso = new ProcessBuilder("sh", "-c", linea + ">> src\\main\\resources\\mis_procesos.txt")
-                        .start();
-                proceso.waitFor();
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }else if (this.comando=="lsof") {
-            Process proceso;
-            try {
-                proceso = new ProcessBuilder("sh", "-c", linea + ">> src\\main\\resources\\mis_procesos.txt")
+                proceso = new ProcessBuilder("sh", "-c", linea + " -bn1 >> src/main/resources/mis_procesos.txt")
                         .start();
                 proceso.waitFor();
             } catch (Exception e) {
@@ -85,6 +65,16 @@ public abstract class ComandoServiceAbstract {
                 e.printStackTrace();
             }
         }
+            Process proceso;
+            try {
+                proceso = new ProcessBuilder("sh", "-c", linea + ">> src/main/resources/mis_procesos.txt")
+                        .start();
+                proceso.waitFor();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        
 
     }
 

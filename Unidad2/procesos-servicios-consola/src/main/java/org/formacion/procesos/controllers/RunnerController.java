@@ -14,7 +14,7 @@ public class RunnerController {
     @Autowired
     ComandoServicePS comandoControllerPs;
     @Autowired
-    ComandoServiceLSOF comandoControllerLs;
+    ComandoServiceLSOF comandoControllerLsof;
     @Autowired
     ComandoServiceTop comandoControllerTop;
 
@@ -31,7 +31,7 @@ public class RunnerController {
         if (linea.toUpperCase().startsWith("PS")) {
             comandoControllerPs.procesarLinea(linea);            
         }else if(linea.toUpperCase().startsWith("LSOF")){
-            comandoControllerLs.procesarLinea(linea);
+            comandoControllerLsof.procesarLinea(linea);
         }else if (linea.toUpperCase().startsWith("TOP")) {
             comandoControllerTop.procesarLinea(linea);
         }
