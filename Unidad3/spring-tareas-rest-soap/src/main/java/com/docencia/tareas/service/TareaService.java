@@ -1,0 +1,58 @@
+package com.docencia.tareas.service;
+
+import java.util.List;
+import java.util.UUID;
+
+import com.docencia.tareas.model.Tarea;
+import com.docencia.tareas.repositories.ITareaRepository;
+
+public class TareaService implements ITareaService {
+
+    ITareaRepository tareaRepository;
+
+    public TareaService(ITareaRepository tareaRepository) {
+        this.tareaRepository = tareaRepository;
+    }
+
+    @Override
+    public List<Tarea> listarTodas() {
+        return tareaRepository.all();
+    }
+
+    @Override
+    public Tarea buscarPorId(Long id) {
+        if (id==null) {
+            return null;
+        }
+        Tarea tarea=new Tarea(id);
+        return tareaRepository.findBy(tarea);
+    }
+
+    @Override
+    public Tarea crearTarea(String titulo, String descripcion) {
+        Long id=UUID.randomUUID().getMostSignificantBits();
+        Tarea tarea=new Tarea(id, titulo, descripcion, false);
+        return tareaRepository.add(tarea);
+    }
+
+    @Override
+    public boolean eliminarTarea(Long id) {
+          if (id==null) {
+            return false;
+        }
+        Tarea tarea=new Tarea(id);
+        tareaRepository.delete(tarea);
+        return true;
+    }
+
+    @Override
+    public Tarea actualizarTarea(Long id, String titulo, String descripcion, Boolean completada) {
+        if (id==null) {
+            return null;
+        }
+        Tarea tarea=new Tarea(id);
+        return tareaRepository.update(tarea);
+        
+    }
+
+}
