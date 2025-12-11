@@ -5,18 +5,19 @@ import java.util.List;
 import com.docencia.tareas.model.Tarea;
 
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 
 @WebService(
     targetNamespace="http://tareas.ies.puerto.es/",
     name="TareaPorType"
 )
-public interface ITareaSoapService{
+public interface ITareaSoapEndpoint{
 
     @WebMethod(operationName = "listarAll")
     List<Tarea> listar();
     @WebMethod(operationName = "buscar")
-    Tarea buscar(Long id);
+    Tarea buscar( @WebParam(name="identificador") Long id);
     @WebMethod(operationName = "crear")
     Tarea crear(String titulo, String descripcion);
     @WebMethod(operationName = "actualizar")

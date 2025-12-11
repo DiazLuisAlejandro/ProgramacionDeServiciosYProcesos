@@ -3,9 +3,12 @@ package com.docencia.tareas.service;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.stereotype.Service;
+
 import com.docencia.tareas.model.Tarea;
 import com.docencia.tareas.repositories.ITareaRepository;
 
+@Service
 public class TareaService implements ITareaService {
 
     ITareaRepository tareaRepository;

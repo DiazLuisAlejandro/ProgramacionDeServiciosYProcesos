@@ -2,7 +2,6 @@ package com.docencia.tareas.soap;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.docencia.tareas.model.Tarea;
@@ -14,10 +13,10 @@ import jakarta.jws.WebService;
     serviceName = "TareaService",
     portName = "TareaPort",
     targetNamespace = "http://tareas.ies.puerto.es/",
-    endpointInterface = "com.docencia.tareas.soap.ITareaSoapService"
+    endpointInterface = "com.docencia.tareas.soap.ITareaSoapEndpoint"
 )
 @Service
-public class TareaSoapService implements ITareaSoapService {
+public class TareaSoapService implements ITareaSoapEndpoint {
 
     private final ITareaService tareaService;
     
