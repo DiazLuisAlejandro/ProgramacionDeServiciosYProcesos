@@ -2,6 +2,7 @@ package com.docencia.tasks.adapters.in.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,7 @@ public class TaskController {
 
     @PostMapping
     @Operation(summary = "Create new task")
-    public TaskResponse create(@RequestBody TaskRequest taskRequest) {
+    public TaskResponse create(@NotNull @RequestBody TaskRequest taskRequest) {
         Task task=requestToTask(taskRequest);
         task=service.createTask(task);
         return mapper.taskToResponse(task);

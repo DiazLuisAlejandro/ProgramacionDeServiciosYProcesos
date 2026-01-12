@@ -28,6 +28,6 @@ public interface TaskMapper {
 
     public List<Task> entitiesToTasks(List<TaskEntity> entities);
 
-
+    
     public TaskResponse taskToResponse(Task task);
 }
